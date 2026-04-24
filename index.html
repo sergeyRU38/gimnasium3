@@ -21,7 +21,12 @@
 
         .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; }
 
-        /* Анимации */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -38,15 +43,9 @@
             background-size: 200% 200%;
             animation: gradientShift 8s ease infinite;
             color: white;
-            padding: 20px 0 80px;
+            padding: 20px 0 60px;
             position: relative;
             overflow: hidden;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         header::before {
@@ -66,8 +65,10 @@
             align-items: center;
             padding: 15px 0;
             border-bottom: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .header-top span {
@@ -83,6 +84,8 @@
             padding: 15px 0;
             position: relative;
             z-index: 10;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
@@ -121,6 +124,7 @@
             padding: 12px 30px;
             border-radius: 50px;
             backdrop-filter: blur(10px);
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -128,9 +132,15 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover { color: white; }
+
+        .nav-links a.active {
+            color: #fbbf24;
+            font-weight: 700;
+        }
 
         .btn-system {
             background: white;
@@ -152,16 +162,9 @@
         }
 
         .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
             padding-top: 40px;
             position: relative;
             z-index: 10;
-        }
-
-        .hero-content {
             animation: slideInLeft 0.8s ease;
         }
 
@@ -175,54 +178,17 @@
             backdrop-filter: blur(10px);
         }
 
-        .hero-content h2 {
+        .hero h2 {
             font-size: 3.5rem;
             font-weight: 900;
             line-height: 1.2;
             margin-bottom: 20px;
         }
 
-        .hero-content p {
+        .hero p {
             font-size: 1.2rem;
             opacity: 0.95;
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-        }
-
-        .hero-stat h3 {
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-
-        .hero-stat p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        .hero-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeInUp 0.8s ease 0.3s both;
-        }
-
-        .hero-image .school-icon {
-            width: 350px;
-            height: 350px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10rem;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.2);
+            max-width: 600px;
         }
 
         /* Секции */
@@ -271,6 +237,10 @@
             height: 400px;
             background: linear-gradient(135deg, #1e40af, #3b82f6);
             border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
         }
 
         .about-content h3 {
@@ -328,7 +298,10 @@
 
         .news-image {
             height: 200px;
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
         }
 
         .news-body {
@@ -350,6 +323,183 @@
         .news-body p {
             color: #64748b;
             font-size: 0.95rem;
+        }
+
+        /* Администрация */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 40px 25px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+
+        .admin-avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 24px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .admin-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .admin-role {
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .admin-subject {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* Учителя */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .teacher-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+            border-color: #06b6d4;
+        }
+
+        .teacher-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-radius: 24px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .teacher-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .teacher-subject {
+            color: #06b6d4;
+            font-weight: 500;
+        }
+
+        /* Вакансии */
+        .vacancies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .vacancy-card {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .vacancy-card:hover {
+            border-color: #f59e0b;
+            background: #fffbeb;
+            transform: scale(1.03);
+        }
+
+        .vacancy-card.hot {
+            border-color: #f59e0b;
+            background: #fffbeb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vacancy-card.hot::after {
+            content: 'СРОЧНО';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 40px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        .vacancy-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fef3c7, #fffbeb);
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #f59e0b;
+        }
+
+        .vacancy-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .vacancy-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .vacancy-contact {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #334155;
         }
 
         /* АИС Онлайн */
@@ -401,11 +551,13 @@
             border-radius: 30px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow-x: auto;
         }
 
         .schedule-table table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 700px;
         }
 
         .schedule-table th {
@@ -416,13 +568,8 @@
             font-weight: 600;
         }
 
-        .schedule-table th:first-child {
-            border-radius: 12px 0 0 0;
-        }
-
-        .schedule-table th:last-child {
-            border-radius: 0 12px 0 0;
-        }
+        .schedule-table th:first-child { border-radius: 12px 0 0 0; }
+        .schedule-table th:last-child { border-radius: 0 12px 0 0; }
 
         .schedule-table td {
             padding: 15px;
@@ -431,9 +578,7 @@
             color: #334155;
         }
 
-        .schedule-table tr:hover td {
-            background: #f8fafc;
-        }
+        .schedule-table tr:hover td { background: #f8fafc; }
 
         /* Контакты */
         .contacts-grid {
@@ -503,10 +648,12 @@
             width: 45px;
             height: 45px;
             font-size: 1.5rem;
-        }
-
-        .footer-logo h3 {
-            font-size: 1.3rem;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .footer-desc {
@@ -541,6 +688,7 @@
             color: #94a3b8;
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .footer-links a:hover { color: white; }
@@ -553,26 +701,42 @@
             font-size: 0.9rem;
         }
 
+        /* Скрытие/отображение секций */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        #home-section {
+            display: block;
+        }
+
         /* Адаптив */
         @media (max-width: 1000px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero-content p { margin-left: auto; margin-right: auto; }
-            .hero-stats { justify-content: center; }
+            .nav-links { display: none; }
+            .hero h2 { font-size: 2.5rem; }
             .about-grid { grid-template-columns: 1fr; }
             .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .admin-grid { grid-template-columns: repeat(2, 1fr); }
+            .teachers-grid { grid-template-columns: repeat(2, 1fr); }
+            .vacancies-grid { grid-template-columns: repeat(2, 1fr); }
             .system-features { grid-template-columns: repeat(2, 1fr); }
             .contacts-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 700px) {
-            .nav-links { display: none; }
-            .hero-content h2 { font-size: 2.5rem; }
+            .hero h2 { font-size: 2rem; }
             .news-grid { grid-template-columns: 1fr; }
+            .admin-grid { grid-template-columns: 1fr; }
+            .teachers-grid { grid-template-columns: 1fr; }
+            .vacancies-grid { grid-template-columns: 1fr; }
             .system-features { grid-template-columns: 1fr; }
             .contacts-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
-            .schedule-table { overflow-x: auto; }
         }
     </style>
 </head>
@@ -581,8 +745,8 @@
         <div class="container">
             <div class="header-top">
                 <span><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Школьная, д. 3</span>
-                <span><i class="fas fa-phone"></i> +7 (495) 123-45-67</span>
-                <span><i class="fas fa-envelope"></i> info@sch3.ru</span>
+                <span><i class="fas fa-phone"></i> +7 904 963-27-61</span>
+                <span><i class="fas fa-envelope"></i> schoolno3@internet.ru</span>
             </div>
             <div class="navbar">
                 <div class="logo">
@@ -592,217 +756,327 @@
                         <p>Частное общеобразовательное учреждение</p>
                     </div>
                 </div>
-                <div class="nav-links">
-                    <a href="#about">О школе</a>
-                    <a href="#news">Новости</a>
-                    <a href="#schedule">Расписание</a>
-                    <a href="#system">АИС Онлайн</a>
-                    <a href="#contacts">Контакты</a>
+                <div class="nav-links" id="navLinks">
+                    <a data-section="home-section" class="active">Главная</a>
+                    <a data-section="about-section">О школе</a>
+                    <a data-section="staff-section">Сотрудники</a>
+                    <a data-section="vacancies-section">Вакансии</a>
+                    <a data-section="news-section">Новости</a>
+                    <a data-section="schedule-section">Расписание</a>
+                    <a data-section="system-section">АИС Онлайн</a>
+                    <a data-section="contacts-section">Контакты</a>
                 </div>
-                <a href="#system" class="btn-system"><i class="fas fa-globe"></i> АИС Онлайн</a>
+                <a href="#system-section" class="btn-system"><i class="fas fa-globe"></i> АИС Онлайн</a>
             </div>
             <div class="hero">
-                <div class="hero-content">
-                    <div class="hero-badge"><i class="fas fa-graduation-cap"></i> Частная школа с углублённым изучением</div>
-                    <h2>Будущее начинается здесь</h2>
-                    <p>ЧОУ СОШ №3 — современное образовательное учреждение, работающее на передовой платформе АИС «Онлайн». Высокое качество образования с использованием новейших технологий.</p>
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <h3>350+</h3>
-                            <p>Учеников</p>
-                        </div>
-                        <div class="hero-stat">
-                            <h3>30</h3>
-                            <p>Педагогов</p>
-                        </div>
-                        <div class="hero-stat">
-                            <h3>98%</h3>
-                            <p>Успеваемость</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="school-icon">🏫</div>
-                </div>
+                <div class="hero-badge"><i class="fas fa-graduation-cap"></i> Частная школа с углублённым изучением</div>
+                <h2>Будущее начинается здесь</h2>
+                <p>ЧОУ СОШ №3 — современное образовательное учреждение, работающее на передовой платформе АИС «Онлайн». Подведомственна МОО «ОПОО».</p>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <!-- О школе -->
-        <section id="about">
-            <div class="about-grid">
-                <div class="about-image" style="display: flex; align-items: center; justify-content: center; font-size: 8rem;">📚</div>
-                <div class="about-content">
-                    <h3>О нашей школе</h3>
-                    <p>Частная общеобразовательная школа №3 основана с целью предоставления качественного образования с использованием современных технологий. Мы работаем на платформе АИС «Онлайн», что обеспечивает прозрачность учебного процесса и удобство для всех участников.</p>
-                    <p>Наша школа подведомственна Молодёжной общественной организации «ОПОО», что открывает дополнительные возможности для развития и инноваций.</p>
-                    <div class="about-features">
-                        <div class="about-feature"><i class="fas fa-check-circle"></i> Лицензия Минобразования</div>
-                        <div class="about-feature"><i class="fas fa-check-circle"></i> АИС «Онлайн» 24/7</div>
-                        <div class="about-feature"><i class="fas fa-check-circle"></i> Кружки и секции</div>
-                        <div class="about-feature"><i class="fas fa-check-circle"></i> Горячее питание</div>
+        <!-- Главная -->
+        <div id="home-section" class="content-section active">
+            <section style="padding-top: 40px;">
+                <div class="section-header">
+                    <div class="section-badge">Добро пожаловать</div>
+                    <h2>ЧОУ «СОШ №3»</h2>
+                    <p>Современное образование с использованием новейших технологий</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-image">📚</div>
+                    <div class="about-content">
+                        <h3>Наша миссия</h3>
+                        <p>Частная общеобразовательная школа №3 предоставляет качественное образование с использованием современных технологий. Мы работаем на платформе АИС «Онлайн».</p>
+                        <p>Школа подведомственна Молодёжной общественной организации «ОПОО», что открывает дополнительные возможности для развития и инноваций.</p>
+                        <div class="about-features">
+                            <div class="about-feature"><i class="fas fa-check-circle"></i> Лицензия Минобразования</div>
+                            <div class="about-feature"><i class="fas fa-check-circle"></i> АИС «Онлайн» 24/7</div>
+                            <div class="about-feature"><i class="fas fa-check-circle"></i> Кружки и секции</div>
+                            <div class="about-feature"><i class="fas fa-check-circle"></i> Горячее питание</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
+
+        <!-- О школе -->
+        <div id="about-section" class="content-section">
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Информация</div>
+                    <h2>О нашей школе</h2>
+                    <p>Всё, что нужно знать о ЧОУ СОШ №3</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-image">🏫</div>
+                    <div class="about-content">
+                        <h3>История и современность</h3>
+                        <p>ЧОУ СОШ №3 — частное общеобразовательное учреждение, предоставляющее качественное образование. Школа оснащена современным оборудованием.</p>
+                        <p>Мы гордимся нашими учениками и педагогами, которые ежедневно достигают новых высот в образовании.</p>
+                        <div class="about-features">
+                            <div class="about-feature"><i class="fas fa-graduation-cap"></i> 350+ учеников</div>
+                            <div class="about-feature"><i class="fas fa-chalkboard-teacher"></i> 6 педагогов</div>
+                            <div class="about-feature"><i class="fas fa-trophy"></i> 98% успеваемость</div>
+                            <div class="about-feature"><i class="fas fa-globe"></i> АИС Онлайн</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Сотрудники -->
+        <div id="staff-section" class="content-section">
+            <!-- Администрация -->
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Руководство</div>
+                    <h2>Администрация школы</h2>
+                    <p>Орган управления ЧОУ «СОШ №3»</p>
+                </div>
+                <div class="admin-grid">
+                    <div class="admin-card">
+                        <div class="admin-avatar">ЧМ</div>
+                        <h3>Чепкасов Марк Николаевич</h3>
+                        <div class="admin-role">Директор школы</div>
+                        <div class="admin-subject">Учитель географии</div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="admin-avatar">ЯМ</div>
+                        <h3>Ямолдинов Матвей Сергеевич</h3>
+                        <div class="admin-role">Секретарь</div>
+                        <div class="admin-subject">Учитель математики</div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="admin-avatar">ГВ</div>
+                        <h3>Горшков Владимир Александрович</h3>
+                        <div class="admin-role">Завуч по УВР</div>
+                        <div class="admin-subject">Учитель русского языка и литературы</div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="admin-avatar">СЕ</div>
+                        <h3>Скворцов Егор Андреевич</h3>
+                        <div class="admin-role">Орган управления</div>
+                        <div class="admin-subject">Административный отдел</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Учителя -->
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Педагоги</div>
+                    <h2>Учительский состав</h2>
+                    <p>Профессионалы с многолетним опытом</p>
+                </div>
+                <div class="teachers-grid">
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">ЧМ</div>
+                        <h3>Чепкасов Марк Николаевич</h3>
+                        <div class="teacher-subject">География</div>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">ГВ</div>
+                        <h3>Горшков Владимир Александрович</h3>
+                        <div class="teacher-subject">Русский язык и литература</div>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">ЗД</div>
+                        <h3>Заставский Дмитрий Андреевич</h3>
+                        <div class="teacher-subject">Технология</div>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">ПН</div>
+                        <h3>Погодина Наталья Артёмовна</h3>
+                        <div class="teacher-subject">Музыка</div>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">СК</div>
+                        <h3>Соколова Ксения Сергеевна</h3>
+                        <div class="teacher-subject">История и обществознание</div>
+                    </div>
+                    <div class="teacher-card">
+                        <div class="teacher-avatar">ЯМ</div>
+                        <h3>Ямолдинов Матвей Сергеевич</h3>
+                        <div class="teacher-subject">Математика</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Вакансии -->
+        <div id="vacancies-section" class="content-section">
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Работа</div>
+                    <h2>Свободные вакансии</h2>
+                    <p>Присоединяйтесь к нашему коллективу</p>
+                </div>
+                <div class="vacancies-grid">
+                    <div class="vacancy-card hot">
+                        <div class="vacancy-icon"><i class="fas fa-dna"></i></div>
+                        <h3>Учитель биологии</h3>
+                        <p>Полная занятость, 5-11 классы</p>
+                        <div class="vacancy-contact">
+                            <i class="fas fa-envelope"></i> schoolno3@internet.ru<br>
+                            <i class="fas fa-phone"></i> +7 904 963-27-61
+                        </div>
+                    </div>
+                    <div class="vacancy-card hot">
+                        <div class="vacancy-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Учитель информатики</h3>
+                        <p>Полная занятость, 5-11 классы</p>
+                        <div class="vacancy-contact">
+                            <i class="fas fa-envelope"></i> schoolno3@internet.ru<br>
+                            <i class="fas fa-phone"></i> +7 904 963-27-61
+                        </div>
+                    </div>
+                    <div class="vacancy-card hot">
+                        <div class="vacancy-icon"><i class="fas fa-language"></i></div>
+                        <h3>Учитель английского языка</h3>
+                        <p>Полная занятость, 2-11 классы</p>
+                        <div class="vacancy-contact">
+                            <i class="fas fa-envelope"></i> schoolno3@internet.ru<br>
+                            <i class="fas fa-phone"></i> +7 904 963-27-61
+                        </div>
+                    </div>
+                    <div class="vacancy-card">
+                        <div class="vacancy-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3>Учитель ИЗО и черчения</h3>
+                        <p>Частичная занятость</p>
+                        <div class="vacancy-contact">
+                            <i class="fas fa-envelope"></i> schoolno3@internet.ru<br>
+                            <i class="fas fa-phone"></i> +7 904 963-27-61
+                        </div>
+                    </div>
+                    <div class="vacancy-card">
+                        <div class="vacancy-icon"><i class="fas fa-futbol"></i></div>
+                        <h3>Учитель физкультуры и ОБЗР</h3>
+                        <p>Полная занятость</p>
+                        <div class="vacancy-contact">
+                            <i class="fas fa-envelope"></i> schoolno3@internet.ru<br>
+                            <i class="fas fa-phone"></i> +7 904 963-27-61
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <!-- Новости -->
-        <section id="news">
-            <div class="section-header">
-                <div class="section-badge">Новости</div>
-                <h2>Жизнь школы</h2>
-                <p>Последние события и достижения наших учеников</p>
-            </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">🏆</div>
-                    <div class="news-body">
-                        <div class="news-date"><i class="fas fa-calendar"></i> 15 апреля 2026</div>
-                        <h3>Победа в олимпиаде</h3>
-                        <p>Наши ученики заняли призовые места в региональном этапе Всероссийской олимпиады.</p>
+        <div id="news-section" class="content-section">
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Новости</div>
+                    <h2>Жизнь школы</h2>
+                    <p>Последние события и достижения</p>
+                </div>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-image" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">🏆</div>
+                        <div class="news-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> 15 апреля 2026</div>
+                            <h3>Победа в олимпиаде</h3>
+                            <p>Наши ученики заняли призовые места в региональном этапе олимпиады.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0);">💻</div>
+                        <div class="news-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> 10 апреля 2026</div>
+                            <h3>Переход на АИС Онлайн</h3>
+                            <p>Школа полностью перешла на новую цифровую платформу.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">🎭</div>
+                        <div class="news-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> 5 апреля 2026</div>
+                            <h3>Весенний концерт</h3>
+                            <p>Творческий коллектив школы представил яркую программу.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="news-card">
-                    <div class="news-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">💻</div>
-                    <div class="news-body">
-                        <div class="news-date"><i class="fas fa-calendar"></i> 10 апреля 2026</div>
-                        <h3>Переход на АИС Онлайн</h3>
-                        <p>Школа полностью перешла на новую цифровую платформу АИС «Онлайн».</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem;">🎭</div>
-                    <div class="news-body">
-                        <div class="news-date"><i class="fas fa-calendar"></i> 5 апреля 2026</div>
-                        <h3>Весенний концерт</h3>
-                        <p>Творческий коллектив школы представил яркую программу на весеннем фестивале.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- Расписание -->
-        <section id="schedule">
-            <div class="section-header">
-                <div class="section-badge">Учёба</div>
-                <h2>Расписание занятий</h2>
-                <p>Примерное расписание для 5-11 классов</p>
-            </div>
-            <div class="schedule-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Время</th>
-                            <th>Понедельник</th>
-                            <th>Вторник</th>
-                            <th>Среда</th>
-                            <th>Четверг</th>
-                            <th>Пятница</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>08:30</strong></td>
-                            <td>Математика</td>
-                            <td>Русский язык</td>
-                            <td>Физика</td>
-                            <td>История</td>
-                            <td>Английский</td>
-                        </tr>
-                        <tr>
-                            <td><strong>09:25</strong></td>
-                            <td>Русский язык</td>
-                            <td>Математика</td>
-                            <td>Химия</td>
-                            <td>Физкультура</td>
-                            <td>Физика</td>
-                        </tr>
-                        <tr>
-                            <td><strong>10:20</strong></td>
-                            <td>История</td>
-                            <td>Английский</td>
-                            <td>Математика</td>
-                            <td>Биология</td>
-                            <td>Информатика</td>
-                        </tr>
-                        <tr>
-                            <td><strong>11:15</strong></td>
-                            <td>Физкультура</td>
-                            <td>Физика</td>
-                            <td>Литература</td>
-                            <td>Математика</td>
-                            <td>География</td>
-                        </tr>
-                        <tr>
-                            <td><strong>12:10</strong></td>
-                            <td>Английский</td>
-                            <td>Информатика</td>
-                            <td>Физкультура</td>
-                            <td>Литература</td>
-                            <td>Обществознание</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <div id="schedule-section" class="content-section">
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Учёба</div>
+                    <h2>Расписание занятий</h2>
+                    <p>Примерное расписание для 5-11 классов</p>
+                </div>
+                <div class="schedule-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Время</th>
+                                <th>Понедельник</th>
+                                <th>Вторник</th>
+                                <th>Среда</th>
+                                <th>Четверг</th>
+                                <th>Пятница</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>08:30</td><td>Математика</td><td>Русский язык</td><td>Физика</td><td>История</td><td>Английский</td></tr>
+                            <tr><td>09:25</td><td>Русский язык</td><td>Математика</td><td>Химия</td><td>Физкультура</td><td>Физика</td></tr>
+                            <tr><td>10:20</td><td>История</td><td>Английский</td><td>Математика</td><td>Биология</td><td>Информатика</td></tr>
+                            <tr><td>11:15</td><td>Физкультура</td><td>Физика</td><td>Литература</td><td>Математика</td><td>География</td></tr>
+                            <tr><td>12:10</td><td>Английский</td><td>Информатика</td><td>Физкультура</td><td>Литература</td><td>Обществознание</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
 
         <!-- АИС Онлайн -->
-        <section id="system">
-            <div class="system-showcase">
-                <div class="section-badge">Технологии</div>
-                <h2>АИС «Онлайн»</h2>
-                <p style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto;">Наша школа работает на передовой облачной платформе</p>
-                <div class="system-features">
-                    <div class="sys-feature">
-                        <i class="fas fa-globe"></i>
-                        <h3>Облачный доступ</h3>
-                        <p>Работайте из любой точки мира</p>
-                    </div>
-                    <div class="sys-feature">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>Мобильность</h3>
-                        <p>Приложение для телефона</p>
-                    </div>
-                    <div class="sys-feature">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>Аналитика</h3>
-                        <p>Успеваемость в реальном времени</p>
-                    </div>
-                    <div class="sys-feature">
-                        <i class="fas fa-lock"></i>
-                        <h3>Безопасность</h3>
-                        <p>Данные под защитой</p>
+        <div id="system-section" class="content-section">
+            <section>
+                <div class="system-showcase">
+                    <div class="section-badge">Технологии</div>
+                    <h2>АИС «Онлайн»</h2>
+                    <p style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto;">Наша школа работает на передовой облачной платформе</p>
+                    <div class="system-features">
+                        <div class="sys-feature"><i class="fas fa-globe"></i><h3>Облачный доступ</h3><p>Работайте из любой точки мира</p></div>
+                        <div class="sys-feature"><i class="fas fa-mobile-alt"></i><h3>Мобильность</h3><p>Приложение для телефона</p></div>
+                        <div class="sys-feature"><i class="fas fa-chart-bar"></i><h3>Аналитика</h3><p>Успеваемость в реальном времени</p></div>
+                        <div class="sys-feature"><i class="fas fa-lock"></i><h3>Безопасность</h3><p>Данные под защитой</p></div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- Контакты -->
-        <section id="contacts">
-            <div class="section-header">
-                <div class="section-badge">Связь</div>
-                <h2>Контакты</h2>
-                <p>Мы всегда рады ответить на ваши вопросы</p>
-            </div>
-            <div class="contacts-grid">
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h3>Адрес</h3>
-                    <p>г. Москва<br>ул. Школьная, д. 3</p>
+        <div id="contacts-section" class="content-section">
+            <section>
+                <div class="section-header">
+                    <div class="section-badge">Связь</div>
+                    <h2>Контакты</h2>
+                    <p>Мы всегда рады ответить на ваши вопросы</p>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <h3>Телефон</h3>
-                    <p>+7 (495) 123-45-67<br>+7 (495) 765-43-21</p>
+                <div class="contacts-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>Адрес</h3>
+                        <p>г. Москва<br>ул. Школьная, д. 3</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <h3>Телефон</h3>
+                        <p>+7 904 963-27-61</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Email</h3>
+                        <p>schoolno3@internet.ru</p>
+                    </div>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <h3>Email</h3>
-                    <p>info@sch3.ru<br>director@sch3.ru</p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -819,18 +1093,18 @@
                 <div class="footer-links">
                     <h4>Навигация</h4>
                     <ul>
-                        <li><a href="#about">О школе</a></li>
-                        <li><a href="#news">Новости</a></li>
-                        <li><a href="#schedule">Расписание</a></li>
-                        <li><a href="#system">АИС Онлайн</a></li>
+                        <li><a onclick="showSection('about-section')">О школе</a></li>
+                        <li><a onclick="showSection('staff-section')">Сотрудники</a></li>
+                        <li><a onclick="showSection('vacancies-section')">Вакансии</a></li>
+                        <li><a onclick="showSection('news-section')">Новости</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Контакты</h4>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> ул. Школьная, д. 3</li>
-                        <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
-                        <li><i class="fas fa-envelope"></i> info@sch3.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 904 963-27-61</li>
+                        <li><i class="fas fa-envelope"></i> schoolno3@internet.ru</li>
                     </ul>
                 </div>
             </div>
@@ -839,5 +1113,25 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const navLink = document.querySelector(`.nav-links a[data-section="${sectionId}"]`);
+            if (navLink) navLink.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                showSection(section);
+            });
+        });
+    </script>
 </body>
 </html>
